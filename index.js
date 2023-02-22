@@ -27,8 +27,8 @@ app.get("/api/hello", function (req, res) {
 
 // normal timestamp endpoint...
 app.get("/api/timestamp/:date_string?", function(req, res) {
-  var reqString = req.params.date_string;
-  var resDate;
+  let reqString = req.params.date_string;
+  let resDate;
   // check to see if the string is a unix timestamp (in this challenge we can just see if it contains a dash as the 5th character), and perform the conversion to an integer if necessary
   if (!/^\d{4}-/.test(reqString)) reqString = parseInt(reqString);
   resDate = new Date(reqString);
