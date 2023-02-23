@@ -31,15 +31,15 @@ app.get("/api/:date?", (req, res) => {
 
   console.log(`new Date(time):`, date);
 
-  if (isNaN(date)) {
-  result.error = "Invalid Date";
-  }else { 
+  if (isNaN(date)) result.error = "Invalid Date";
+  else
     (result.unix = parseInt(date.getTime())), (result.utc = date.toUTCString());
-  }
+
   console.log("result output (as JSON):", result);
   console.log("------------------------------------");
   res.json(result);
 });
+
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
@@ -48,18 +48,7 @@ app.get("/api/hello", function (req, res) {
 
 
 // normal timestamp endpoint...
-app.get("/api/timestamp/:date_string?", function(req, res) {
-  let reqString = req.params.date_string;
-  let resDate;
-  // check to see if the string is a unix timestamp (in this challenge we can just see if it contains a dash as the 5th character), and perform the conversion to an integer if necessary
-  if (!/^\d{4}-/.test(reqString)) reqString = parseInt(reqString);
-  resDate = new Date(reqString);
-  // this comparision is used to see if the date is a valid date, is there another way to do this?
-  if (resDate.getTime() !== resDate.getTime()) {
-    res.json({ error: "Invalid Date" });
-  }
-  res.json({ unix: resDate.valueOf(), utc: resDate.toUTCString() });
-});
+
 
 
 // listen for requests :)
